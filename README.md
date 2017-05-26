@@ -1,2 +1,2 @@
-# React-video-p
-React-video-p
+# React-redux-template
+template

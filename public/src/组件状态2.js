@@ -11,9 +11,8 @@ class ClickApp extends Component {
 		this.onClear = this.onClear.bind(this);
 	}
 
-	onEvent(e) {
+	onEvent() {
 		this.setState({clickCount: this.state.clickCount+1});
-		console.log(e.target);
 	}
 	onClear(){
 		this.setState({clickCount: 0})

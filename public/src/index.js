@@ -54,13 +54,10 @@ class FormApp extends Component {
 	render() {
 		return(
 			<form onSubmit={this.handleSubmit}>
-        <h4>直接focus</h4>
-        <input type='text' ref = {function(comp) {
+				<h4>input feild</h4>
+				<input type='text' ref = {function(comp) {
           ReactDOM.findDOMNode(comp).focus();
         }} defaultValue={this.state.inputVaule}/> <br/>
-
-				<h4>input feild</h4>
-				<input type='text' ref = "goodInput" defaultValue={this.state.inputVaule}/> <br/>
 
         <SelectBox ref = "goodSelect" selectValue={this.state.selectValue}/>
 

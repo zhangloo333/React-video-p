@@ -21,7 +21,7 @@ class FormApp extends Component {
 		e.preventDefault();
 		var formDate = {
 			input: this.refs.goodInput.value,
-			select: this.refs.goodSelect.value,
+			select: ReactDOM.findDOMNode(this.refs.goodSelect).childNodes[1].value,
 			redio:this.state.radioValue,
 			check: this.state.checkValues,
 			textarea: this.refs.goodTextarea.value
@@ -57,14 +57,8 @@ class FormApp extends Component {
 				<h4>input feild</h4>
 				<input type='text' ref = "goodInput" defaultValue={this.state.inputVaule}/> <br/>
 
-				<h4>select box feild</h4>
-				<select defaultValue ={this.state.selectValue} ref = "goodSelect">
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
-					<option value="D">D</option>
-					<option value="E">E</option>
-				</select>
+        <SelectBox ref = "goodSelect" selectValue={this.state.selectValue}/>
+
 
 				<br />
 				<RadioButton  handleRadio = {this.handleRadio}/>
@@ -82,25 +76,29 @@ class FormApp extends Component {
 	}
 }
 
-class SlectBox extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-        selectValue:this.props.
-		}
-	}
+class SelectBox extends Component {
+    constructor(props){
+  		super(props);
+      this.state ={
+        selectValue: this.props.selectValue
+      }
+  	}
 
-  render() {
-    var valueArray = ['A','B','C','D','E'];
-    var storage = [];
-    for(var ii = 0; ii < valueArray.length; ii++) {
-      storage.push(<option value={valueArray[ii]}>{valueArray[ii]}</option>)
+    render() {
+      var storage = [];
+  		var name = ['A','B','C','E','F'];
+  			for(var ii=0; ii< name.length; ii++) {
+  				storage.push(<option key = {ii} value={name[ii]}>{name[ii]}</option>);
+  			}
+      return(
+        <div>
+        <h4>select box feild</h4>
+  				<select defaultValue ={this.state.selectValue}>
+  				    {storage}
+  				</select>
+        </div>
+      )
     }
-    return(
-      <select defaultValue ={this.state.selectValue} ref = "goodSelect">
-
-    )
-  }
 }
 
 class RadioButton extends Component {
@@ -118,11 +116,6 @@ class RadioButton extends Component {
 					<h4>optimatize radio button</h4>
 					<p>A B C</p>
 					{storage}
-					{
-					// <input onChange ={this.props.handleRadio} name="goodRadio" type="radio" value="A" />
-					// <input onChange ={this.props.handleRadio} name="goodRadio" type="radio" defaultChecked vaule="B"/>
-					// <input onChange ={this.props.handleRadio} name="goodRadio" type="radio" vaule="C"/>
-					}
 					<br />
 				</div>
 		)
@@ -130,25 +123,31 @@ class RadioButton extends Component {
 }
 
 class CheckBox extends Component {
-	constructor(props) {
-		super(props);
-	}
+      constructor(props) {
+        super(props);
+      }
+      saySomething() {
+          alert("you have submits");
+      }
 
-	saySomething() {
-		alert("you have submits");
-	}
-	render() {
-		return(
-			<div>
-			<h4>this new is checkbox</h4>
-				<p>A B C</p>
-				<input onChange = {this.props.handleCheck} name="goodRadio" type="checkbox" value="A"/>
-				<input onChange = {this.props.handleCheck} name="goodRadio" type="checkbox" value="B"/>
-				<input onChange = {this.props.handleCheck} name="goodRadio" type="checkbox" value="C"/>
-			</div>
-		)
-	}
+      render() {
+        let storage = [];
+        let index = ['A','B','C'];
+
+        for(var ii = 0; ii < index.length; ii++) {
+              storage.push(<input key={ii} onChange = {this.props.handleCheck} name="goodRadio" type="checkbox" value={index[ii]}/>)
+        }
+        return(
+          <div>
+              <h4>this new is checkbox</h4>
+              <p>A B C</p>
+              {storage}
+          </div>
+        )
+      }
+
 }
+
 
 
 

@@ -1,26 +1,19 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-class HelloMessage extends Component {
 
-
+class DeletNode extends Component {
 
   render() {
-    const divStyle= {
-      color: 'red',
-      background:'yellow'
-    }
-    const pstyle = {
-      color: 'blue',
-      background: 'red'
-    }
     return(
-      <div style={divStyle}>
-        Hello {this.props.name}
-        <p >you are sb</p>
+      <div>
+          <h4>this is for deleteNode</h4>
+          <button onClick={function(e){
+            e.target.previousSibling.remove();
+          }}>delete</button>
       </div>
     )
   }
 }
 
-ReactDOM.render(<HelloMessage name ={"lei"} />, document.getElementById('app'));
+ReactDOM.render(<DeletNode/>, document.getElementById('app'),console.log("finish"));

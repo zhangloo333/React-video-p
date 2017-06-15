@@ -1,19 +1,33 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
+class TimeCounter extends Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      counter: 0
+    }
+  }
 
-class DeletNode extends Component {
+  tick() {
+    this.setState((prevState) => ({
+      counter:prevState.counter+1
+    }))
+  }
 
-  render() {
+  componentDidMount(){
+    this.timeStamp = setInterval(()=>this.tick(),1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timeStamp)
+  }
+
+  render(){
     return(
-      <div>
-          <h4>this is for deleteNode</h4>
-          <button onClick={function(e){
-            e.target.previousSibling.remove();
-          }}>delete</button>
-      </div>
+      <div>Time counter: {this.state.counter}</div>
     )
   }
 }
 
-ReactDOM.render(<DeletNode/>, document.getElementById('app'),console.log("finish"));
+ReactDOM.render(<TimeCounter />, document.getElementById('app'),console.log("finish"));
